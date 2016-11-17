@@ -141,7 +141,7 @@ print "mesh resolution and parameters fixed"
 # The number of data points which are digitised from the heart segments 
 # fix interior nodes so that fitting only applies to surface
 # If start iteration > 1, read in geometry from a previous fit iteration
-numberOfDataPoints = 3
+numberOfDataPoints = 2513
 numberOfIterations = 1
 fixInterior = True
 zeroTolerance = 0.00001
@@ -888,7 +888,8 @@ if (fixInterior):
                 numberOfDerivatives=meshNodes.NumberOfDerivativesGet(nodeIdx)
                 for derivativeIdx in range(1,numberOfDerivatives+1):
                     value=geometricField.ParameterSetGetNodeDP(iron.FieldVariableTypes.U,
-                                                               iron.FieldParameterSetTypes.VALUES,
+                        
+                                       iron.FieldParameterSetTypes.VALUES,
                                                                version,derivativeIdx,nodeIdx,componentIdx)
                     #print "Setting boundary condition for component, node, derivative, value: ",componentIdx,nodeIdx,derivativeIdx,value
                     boundaryConditions.SetNode(dependentField,iron.FieldVariableTypes.U,
