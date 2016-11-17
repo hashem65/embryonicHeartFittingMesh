@@ -285,6 +285,7 @@ decomposition = iron.Decomposition()
 decomposition.CreateStart(decompositionUserNumber,mesh)
 decomposition.type = iron.DecompositionTypes.CALCULATED
 decomposition.numberOfDomains = numberOfComputationalNodes
+decomposition.CalculateFacesSet(True)
 decomposition.CreateFinish()
 
 print "mesh decomposition finished"
@@ -794,7 +795,7 @@ for element in range(numberOfElements):
         for dataPoint in range(numberOfProjectedDataPoints):
             dataPointId = dataPoint + 1
             dataPointNumber = decomposition.TopologyElementDataPointUserNumberGet(elementId,dataPointId)
-            dataList = dataPoints.ValuesGet(dataPointNumber,3)
+            dataList = dataPoints.PositionGet(dataPointNumber,3)
             # set data point field values
             for component in range(numberOfDimensions):
                 componentId = component + 1
@@ -874,7 +875,7 @@ problem.SolverEquationsCreateFinish()
 # Create boundary conditions and set first and last nodes to 0.0 and 1.0
 boundaryConditions = iron.BoundaryConditions()
 solverEquations.BoundaryConditionsCreateStart(boundaryConditions)
-
+'''
 version = 1
 meshComponent = decomposition.MeshComponentGet()
 # Fix the interior nodes- use to only apply fit to surface nodes
@@ -893,7 +894,7 @@ if (fixInterior):
                     boundaryConditions.SetNode(dependentField,iron.FieldVariableTypes.U,
                                                version,derivativeIdx,nodeIdx,componentIdx,
                                                iron.BoundaryConditionsTypes.FIXED,value)
-
+'''
 solverEquations.BoundaryConditionsCreateFinish()
 
 
